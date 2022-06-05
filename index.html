@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Old+Standard+TT&family=Playball&family=Roboto&family=Sacramento&display=swap"
+        rel="stylesheet">
+    <title>Practice tracker</title>
+</head>
+
+<body>
+    <div class="main">
+        <div>
+            <h1>
+                Performance Report
+            </h1>
+            <p>
+        </div>
+        <div class="property">
+            <div class="container light">
+                <p class="text">Read Question</p>
+                <div>
+                    <p class="text">Time left</p>
+                    <p id="ReadGivenTestcases" class="time"></p>
+                </div>
+            </div>
+            <div class="container light">
+                <p class="text">Form New testcases</p>
+                <div>
+                    <p class="text">Time left</p>
+                    <p id="PrepareTestcases" class="time"></p>
+                </div>
+            </div>
+            <div class="container dark">
+                <p class="text">Develop feasible Solution</p>
+                <div>
+                    <p class="text">Time left</p>
+                    <p id="FindApproach" class="time"></p>
+                </div>
+
+            </div>
+            <div class="container dark">
+                <p class="text">Implement Solution</p>
+                <div>
+                    <p class="text">Time left</p>
+                    <p id="Implement" class="time"></p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div>
+                <input type="button" value="Start" class="btn" id="startbtn">
+                <input type="button" value="Stop" class="btn" id="endbtn">
+            </div>
+            <div class="exceed details">
+                <p class="text">Exceeded Time:</p>
+                <p id="Exceededtime" class="time"></p>
+            </div>
+            <div class="details">
+                <p class="text">Total Time Taken:</p>
+                <p id="Totaltimetaken" class="time"></p>
+            </div>
+        </div>
+    </div>
+    <script src="operations.js"></script>
+</body>
+
+</html>
