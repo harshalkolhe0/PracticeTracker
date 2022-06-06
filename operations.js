@@ -1,5 +1,5 @@
-var time5 = 5 * 60;
-var time10 = 10 * 60;
+var time5;
+var time10;
 
 var implement = "Implement";
 var approach = "FindApproach";
@@ -10,12 +10,27 @@ var timeover = 0;
 var add = 0.2;
 var startbtn = document.getElementById("startbtn");
 var endbtn = document.getElementById("endbtn");
+var resetbtn = document.getElementById("resetbtn");
 var totaltimetaken = "Totaltimetaken";
 var timetaken = document.getElementById(totaltimetaken);
 var intervals = [];
+function ReturnTime(time) {
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time) % 60;
+    return minutes + " min " + seconds + " sec";
+}
+function initialize() {
+    time5 = 5 * 60; time10 = 10 * 60;
+    document.getElementById(totaltimetaken).innerHTML = ReturnTime(0);
+    document.getElementById(implement).innerHTML = ReturnTime(time10);
+    document.getElementById(approach).innerHTML = ReturnTime(time5);
+    document.getElementById(selftest).innerHTML = ReturnTime(time5);
+    document.getElementById(read).innerHTML = ReturnTime(time5);
+    document.getElementById(extra).innerHTML = ReturnTime(0);
+};
+initialize();
 startbtn.onclick = function () {
-
-    let i = 0; timeover = 0;
+    let i = 0;
     clearInterval(intervals[i]);
     intervals[i++] = setInterval("countdown(read,time5,time5)", 1000);
     clearInterval(intervals[i]);
@@ -26,37 +41,35 @@ startbtn.onclick = function () {
     intervals[i++] = setInterval("countdown(implement,(3*time5+time10),time10)", 1000);
     clearInterval(intervals[i]);
     intervals[i++] = setInterval("countup(extra,(3*time5+time10))", 1000);
-    timetaken.innerHTML = 0 + " min " + 0 + " sec";
-
+    timetaken.innerHTML = ReturnTime(timeover);
 }
 endbtn.onclick = function () {
     for (let j = 0; j < 5; j++)clearInterval(intervals[j]);
-    let minutes = Math.floor(timeover / 60);
-    let seconds = Math.ceil(timeover) % 60;
-    timetaken.innerHTML = minutes + " min " + seconds + " sec";
-    timeover = 0;
 }
+resetbtn.onclick = function () {
+    for (let j = 0; j < 5; j++)clearInterval(intervals[j]);
+    timeover = 0;
+    initialize();
+}
+
 var countdown = function (id, end, exptime) {
-    let minutes = Math.floor(exptime / 60);
-    let seconds = exptime % 60;
+    let time = ReturnTime(exptime);
     if (timeover + exptime >= end) {
-        minutes = Math.floor((end - timeover) / 60);
-        seconds = Math.floor(end - timeover) % 60;
+        time = ReturnTime(end - timeover);
     }
     if (timeover >= end) {
         document.getElementById(id).innerHTML = "Time Out";
     }
     else {
-        document.getElementById(id).innerHTML = minutes + " min " + seconds + " sec";
+        document.getElementById(id).innerHTML = time;
     }
     timeover += add;
 }
 var countup = function (id, start) {
-    let minutes = Math.floor((timeover - start) / 60);
-    let seconds = Math.floor(timeover - start) % 60;
-    if (timeover <= start) {
-        minutes = 0; seconds = 0;
-    }
-    document.getElementById(id).innerHTML = minutes + " min " + seconds + " sec";
+    let time = ReturnTime(timeover - start);
+    if (timeover <= start) time = ReturnTime(0);
+    document.getElementById(id).innerHTML = time;
+    timetaken.innerHTML = ReturnTime(timeover);
     timeover += add;
 }
+
